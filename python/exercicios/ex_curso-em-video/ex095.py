@@ -3,7 +3,6 @@ def main():
     time = list()
     op = 's'
     while(op in "sS"):
-        op = ''    
         jogador = dict()
         jogador['nome'] = input("Nome do jogador: ")
         qtdPartidas = int(input("Quantidade de partidas jogadas: "))
