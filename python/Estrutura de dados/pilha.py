@@ -46,7 +46,7 @@ def main():
             input("Aperte enter para continuar...")
         elif (res == 6):
             for i in stack[::-1]:
-                print(f"| {i:5} |")
+                print(f"| {i:^5} |")
             input("Aperte enter para continuar...")
         elif (res == 7):
             break
