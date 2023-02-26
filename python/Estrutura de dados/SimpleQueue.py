@@ -8,11 +8,11 @@ class SimpleQueue:
         return f"{self.queue}"
     
     def __iter__(self):
+        self._cont = 0
         return self
     
     def __next__(self) -> any:
         if self._cont > self._length:
-            self._cont = 0
             raise StopIteration
         current = self._queue[self._cont]
         self._cont += 1
