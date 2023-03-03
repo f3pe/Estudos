@@ -8,6 +8,12 @@ class linkedList:
         self._current = None
         self.head = None
 
+    def __repr__(self) -> str:
+        s = ""
+        for i in self:
+            s += i + " "
+        return s
+    
     def __iter__(self):
         self._current = self.head
         return self
@@ -18,6 +24,3 @@ class linkedList:
         temp = self._current
         self._current = self._current.next
         return temp.item
-    
-
-    
