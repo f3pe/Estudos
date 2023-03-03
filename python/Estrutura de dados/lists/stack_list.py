@@ -1,36 +1,23 @@
 from linked_list import linkedList
 from linked_list import node
+import os
 
 class stack:
     def __init__(self) -> None:
-        self._stack = linkedList()
-        self._length = 0
+        self._stack, self._length = linkedList(), 0
 
     def __repr__(self) -> str:
-        s = ""
-        _current = self._stack.head
-        while(_current.next):
-            s += f"{_current.item} "
-            _current = _current.next
-        s += f"{_current.item} "
-        return s
+        return self._stack
     
     def __len__(self) -> int:
         return self._length
     
     def __iter__(self):
-        if not self.isEmpty():
-            self._current = self._stack.head
-        else:
-            self._current = None
+        self._stack = self._stack.__iter__()
         return self
     
     def __next__(self):
-        if self._current == None:
-            raise StopIteration 
-        temp = self._current
-        self._current = self._current.next
-        return temp.item
+        return self._stack.__next__() 
     
     def push(self, item) -> None:
         self._length += 1
@@ -43,20 +30,15 @@ class stack:
             _current.next = node(item)
 
     def pop(self) -> any:
-        
-        if self._length == 1:
-            temp = self._delete(self._stack.head)
-            self._length -= 1
-            return temp
-        elif self._length > 1:
-            index = 1
-            _current = self._stack.head
+        if self._length >= 1:
+            index, _current = 1, self._stack.head
             while(index < self._length):
                 _current = _current.next
                 index += 1
-            temp = self._delete(_current)
             self._length -= 1
-            return temp
+            return self._delete(_current)
+        else:
+            raise Exception("Stack is Empty")
         
     def _delete(self, node) -> any:
         temp = node.item
@@ -81,7 +63,11 @@ if __name__=="__main__":
     palavra = input("Digite uma palavra: ")
     for i in palavra:
         f.push(i)
-    print(f"ultima letra da palavra: {f.peek()}")
+    os.system('cls')
+    print("A palavra é: ", end="")
+    for i in f:
+        print(i, end="")
+    print(f"\nUltima letra da palavra: {f.peek()}")
     inverse = ""
     times = len(f)
     for i in range(times):
